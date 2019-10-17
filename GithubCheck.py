@@ -12,7 +12,7 @@ def download_repo():
 
 def main():
     # do stuff
-    owner='billerhard'
+    owner='pdswift'
     repo="CI-CD-Flaskr-Pipeline"
     github_endpoint = "https://api.github.com/repos/%s/%s/commits" % (owner, repo)
     previous_time="1999-12-31T23:59:59Z"
