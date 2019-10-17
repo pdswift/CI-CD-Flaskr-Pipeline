@@ -3,7 +3,7 @@ import requests
 
 
 def download_repo():
-    repo_endpoint = 'https://api.github.com/repos/%s/%s/%s/' % ("billerhard","CI-CD-Flaskr-Pipeline", 'zipball')
+    repo_endpoint = 'https://api.github.com/repos/%s/%s/%s/' % ("pdswift","CI-CD-Flaskr-Pipeline", 'zipball')
     args={}
     response = requests.get(repo_endpoint,params=args)
     with open('./repo.zip', "wb") as f:
