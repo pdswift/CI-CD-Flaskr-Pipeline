@@ -12,8 +12,15 @@ def download_repo():
 
 def main():
     # do stuff
-    github_endpoint = "https://api.github.com/repos/%s/%s/commits" % ("billerhard", "CI-CD-Flaskr-Pipeline")
-    previous_time="2019-10-17T01:01:01Z"
+    owner='billerhard'
+    repo="CI-CD-Flaskr-Pipeline"
+    github_endpoint = "https://api.github.com/repos/%s/%s/commits" % (owner, repo)
+    previous_time="1999-12-31T23:59:59Z"
+    with open('./config','r') as f:
+        buffer=f.read()
+        if buffer:
+            previous_time=f.read()
+
     args = {'since':previous_time}
 
     response = requests.get(github_endpoint, params=args)
@@ -21,6 +28,8 @@ def main():
         if previous_time<item['commit']['author']['date']:
             print('new commit found!')
             previous_time=item['commit']['author']['date']
+            with open('./config', 'w') as f:
+                f.write(previous_time)
             download_repo()
 
 
